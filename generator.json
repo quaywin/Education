@@ -1,0 +1,10 @@
+{
+	"baseName": "school",
+	"databaseType": "sqlite",
+	"hostName": "localhost",
+	"databaseName": "/tmp/my_db",
+	"userName": "",
+	"password": "",
+	"entities": [],
+	"composer": true
+}

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" ng-app="school">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+  <link rel="stylesheet" href="theme/css/fonts/linecons/css/linecons.css">
+  <link rel="stylesheet" href="theme/css/fonts/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="theme/css/bootstrap.css">
+  <link rel="stylesheet" href="theme/css/xenon-core.css">
+  <link rel="stylesheet" href="theme/css/xenon-forms.css">
+  <link rel="stylesheet" href="theme/css/xenon-components.css">
+  <link rel="stylesheet" href="theme/css/xenon-skins.css">
+  <link rel="stylesheet" href="theme/css/custom.css">
+
+  <link rel="stylesheet" href="css/app.css">
+  <script src="theme/js/jquery-1.11.1.min.js"></script>
+  <!-- <link href="css/app.css" rel="stylesheet">--></head>
+<body class="page-body">
+  <nav class="navbar horizontal-menu navbar-minimal" ng-controller="NavigationController">
+    <div class="navbar-inner">
+      <div class="navbar-brand">
+        <a href="#/" class="logo">
+          <img src="images/puf_logo.jpg" width="50" alt class="hidden-xs"></a>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav"></ul>
+        <ul class="navbar-nav">
+          <li class="has-sub">
+            <a class="pointer"> <i class="fa fa-user"></i>
+              <span class="title">Account Information</span>
+            </a>
+            <ul>
+              <li>
+                <a href="/#/account/profile">
+                  <span class="title">Profile</span>
+                </a>
+              </li>
+              <li>
+                <a href="/#/account/changepassword">
+                  <span class="title">ChangePassword</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a class="pointer"> <i class="fa fa-book"></i>
+              <span class="title">Study Information</span>
+            </a>
+            <ul>
+              <li>
+                <a href="/#/study/timetable">
+                  <span class="title">Timetable</span>
+                </a>
+              </li>
+              <li>
+                <a href="/#/study/score">
+                  <span class="title">Score Viewing</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown user-profile">
+            <a class="pointer" data-toggle="dropdown">
+              <img src="theme/images/user-1.png" alt="user-image" class="img-circle img-inline userpic-32" width="28">
+              <span>
+                {{Model.displayname}}
+                <i class="fa-angle-down"></i>
+              </span>
+            </a>
+            <ul class="dropdown-menu user-profile-menu list-unstyled">
+              <li>
+                <a ng-click="profile()" class="pointer">
+                  <i class="fa-user"></i>
+                  Profile
+                </a>
+              </li>
+
+              <li class="last">
+                <a href="/account/logout" class="pointer">
+                  <i class="fa-lock"></i>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="page-container">
+    <div class="main-container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-7" ng-view></div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+  <script src="lib/jquery/dist/jquery.js"></script>
+  <script src="lib/jquery-ui/jquery-ui.js"></script>
+  <script src="lib/lodash/dist/lodash.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-cookies/angular-cookies.min.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="lib/angular-ui-date/src/date.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/controller/home-controller.js"></script>
+  <script src="js/controller/account-controller.js"></script>
+  <script src="js/controller/navigation-controller.js"></script>
+  <script src="theme/js/bootstrap.min.js"></script>
+  <script src="theme/js/TweenMax.min.js"></script>
+  <script src="theme/js/resizeable.js"></script>
+  <script src="theme/js/joinable.js"></script>
+  <script src="theme/js/xenon-api.js"></script>
+  <script src="theme/js/xenon-toggles.js"></script>
+  <script src="theme/js/jquery-validate/jquery.validate.min.js"></script>
+  <script src="theme/js/toastr/toastr.min.js"></script>
+
+  <!-- JavaScripts initializations and stuff -->
+  <script src="theme/js/xenon-custom.js"></script>
+
+</body>
+</html>

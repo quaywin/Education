@@ -1,0 +1,58 @@
+<div class="row" ng-controller="SignUpController">
+  <br>
+  <div class="col-sm-7 text-center">
+    <img src="/images/class.jpg" width="70%">
+  </div>
+  <div class="col-sm-5">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">CREATE YOUR ACCOUNT</h2>
+      </div>
+      <div class="panel-body">
+      <form>
+        <div class="row">
+          <div class="row">
+            <div class="col-sm-6 form-group" ng-class="{'validate-has-error':Model.Valid.FirstName!=null}">
+              <label>First name</label>
+              <input type="text" class="form-control" ng-model="Model.FirstName">
+              <span class="validate-has-error">{{Model.Valid.FirstName}}</span>
+            </div>
+            <div class="col-sm-6 form-group" ng-class="{'validate-has-error':Model.Valid.LastName!=null}">
+              <label>Last name</label>
+              <input type="text" class="form-control" ng-model="Model.LastName">
+              <span class="validate-has-error">{{Model.Valid.LastName}}</span>
+
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 form-group" ng-class="{'validate-has-error':Model.Valid.Email!=null}">
+              <label>Email</label>
+              <input type="email" class="form-control" ng-model="Model.Email">
+              <span class="validate-has-error">{{Model.Valid.Email}}</span>
+
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 form-group" ng-class="{'validate-has-error':Model.Valid.Password!=null}">
+              <label>Password</label>
+              <input type="password" class="form-control" ng-model="Model.Password">
+              <span class="validate-has-error">{{Model.Valid.Password}}</span>
+              </div>
+            <div class="col-sm-6 form-group" ng-class="{'validate-has-error':Model.Valid.RePassword!=null}">
+              <label>Re-type password</label>
+              <input type="password" class="form-control" ng-model="Model.RePassword">
+              <span class="validate-has-error">{{Model.Valid.RePassword}}</span>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <button type="button" class="btn-lg btn-block btn btn-turquoise" ng-click="submit()">Sign up</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

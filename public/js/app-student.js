@@ -1,9 +1,8 @@
 "use strick";
 
-app = angular.module('school', [
+app = angular.module('student', [
   'ngRoute',
-  'home.controller',
-  'account.controller',
+  'navigation.controller',
   'ngCookies'
 ]);
 app.config([
@@ -45,22 +44,22 @@ app.config([
       });
   }
 ]);
-// app.run(function($rootScope, $location, $cookies,$http) {
-//   $rootScope.$on("$routeChangeStart", function(event, next, current) {
-//     if ($cookies['loggedin'] != null && $cookies['loggedin'] != undefined && next.$$route != undefined) {
-//       if (next.$$route.originalPath == '/account/login' || next.$$route.originalPath == '/account/signup'|| next.$$route.originalPath == '/') {
-//         $http.post('/account/getTypeUser',{}).success(function(data){
-//           if(data.status == true){
-//             if(data.data == 1){
-//               $location.path('/account/profile')
-//             }
-//             if(data.data == 2){
-//               $location.path('/admin/student')
-//             }
-//           }
-//         });
+app.run(function($rootScope, $location, $cookies,$http) {
+  $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    if ($cookies['loggedin'] != null && $cookies['loggedin'] != undefined && next.$$route != undefined) {
+      if (next.$$route.originalPath == '/account/login' || next.$$route.originalPath == '/account/signup'|| next.$$route.originalPath == '/') {
+        $http.post('/account/getTypeUser',{}).success(function(data){
+          if(data.status == true){
+            if(data.data == 1){
+              $location.path('/account/profile')
+            }
+            if(data.data == 2){
+              $location.path('/admin/student')
+            }
+          }
+        });
         
-//       }
-//     }
-//   });
-// });
+      }
+    }
+  });
+});

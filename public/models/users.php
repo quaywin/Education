@@ -4,15 +4,21 @@
 */
 class User
 {
-  public $id,$username,$firstname,$lastname,$bod,$gender,$address,$phone,$classid,$type,$displayname;
+  public $id,$username,$firstname,$lastname,$gender,$address,$phone,$classid,$type,$studentcode,$displayname,$genderName;
   public function __construct(){
     $this->displayname = "{$this->firstname} {$this->lastname}";
+    if($this->gender == 0){
+      $this->genderName = "Male";
+    }else{
+      $this->genderName = "Female";
+    }
+    
   }
 }
 class Users extends Model {
   
   function getUserLogin($username,$password){
-    $sql = 'Select id,username from Users where username = ? and password =? limit 1';
+    $sql = 'Select id,username,type from Users where username = ? and password =? limit 1';
     $q = self::$db->prepare($sql);
     $q->execute(array($username,$password));
     return $q->fetch();
@@ -31,6 +37,13 @@ class Users extends Model {
     $q->setFetchMode(PDO::FETCH_CLASS,'User');
     return $q->fetch();
   }
+  function getAllUser(){
+    $sql = 'Select * from Users';
+    $q = self::$db->prepare($sql);
+    $q->execute();
+    $q->setFetchMode(PDO::FETCH_CLASS,'User');
+    return $q->fetchAll();
+  }
   function addNewUser($firstname,$lastname,$username,$password){
     $sql = 'Insert into Users (username,password,firstname,lastname) values (?,?,?,?)';
     $q = self::$db->prepare($sql);
@@ -38,6 +51,14 @@ class Users extends Model {
       return $this->getUserLogin($username,$password);
     }
     return null;
+  }
+  function addNewStudent($firstname,$lastname,$username,$password,$bod,$gender,$address,$phone,$classid,$studentcode){
+    $sql = 'Insert into Users (username,password,firstname,lastname,bod,gender,address,phone,classid,studentcode) values (?,?,?,?,?,?,?,?,?,?)';
+    $q = self::$db->prepare($sql);
+    if($q->execute(array($username,$password,$firstname,$lastname,$bod,$gender,$address,$phone,$classid,$studentcode))){
+      return true;
+    }
+    return false;
   }
   function validSingIn($username,$password){
     $valid = array();
@@ -54,7 +75,7 @@ class Users extends Model {
       if($results==null){
         array_push($valid,"The password or username you enter is incorrect");
       }else{
-        return array("status"=>true,"data"=>$results[0]);
+        return array("status"=>true,"data"=>$results[0],"type"=>$results[2]);
       }
     }
     return array("status"=>false,"data"=>$valid);

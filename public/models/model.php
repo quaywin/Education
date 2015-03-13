@@ -1,10 +1,12 @@
 <?php
 abstract class Model {
   public static $db;
+  public static $pageSize = 10;
   public function __construct( ) {
     self::$db = new PDO('sqlite:db.sqlite3');
   }
-  function array_to_obj($array, &$obj)
+
+  public function array_to_obj($array, &$obj)
   {
     foreach ($array as $key => $value)
     {
@@ -20,10 +22,24 @@ abstract class Model {
     }
   return $obj;
   }
-  function arrayToObject($array)
+
+  public function getOffset($page){
+    return ($page-1)*self::$pageSize;
+  }
+
+  public function arrayToObject($array)
   {
    $object= new stdClass();
    return $this->array_to_obj($array,$object);
+  }
+  public static function getPages($count){
+    if(($count % self::$pageSize)>0){
+      $pages = (int)($count / self::$pageSize)+1;
+    }else{
+      $pages = (int)($count / self::$pageSize);
+    }
+    
+    return $pages;
   }
 }
 ?>

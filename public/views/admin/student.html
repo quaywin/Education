@@ -1,0 +1,164 @@
+<div ng-controller="StudentController">
+  <div class="page-title">
+    <div class="title-env">
+      <h1 class="title">Manager</h1>
+      <p class="description">Manager student</p>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Admin</h3>
+
+    </div>
+    <div class="panel-body">
+      <form>
+        <div class="row">
+          <div class="row">
+            <div class="col-sm-6 form-group" ng-class="{'validate-has-error':Model.Valid.FirstName!=null}">
+              <label>First name</label>
+              <input type="text" class="form-control" ng-model="Model.FirstName">
+              <span class="validate-has-error">{{Model.Valid.FirstName}}</span>
+            </div>
+            <div class="col-sm-6 form-group" ng-class="{'validate-has-error':Model.Valid.LastName!=null}">
+              <label>Last name</label>
+              <input type="text" class="form-control" ng-model="Model.LastName">
+              <span class="validate-has-error">{{Model.Valid.LastName}}</span>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 form-group" ng-class="{'validate-has-error':Model.Valid.Password!=null}">
+              <label>Password</label>
+              <input type="password" class="form-control" ng-model="Model.Password">
+              <span class="validate-has-error">{{Model.Valid.Password}}</span>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 form-group" ng-class="{'validate-has-error':Model.Valid.Password!=null}">
+                <label>Gender</label>
+                <select ng-model="myColor" ng-options="color.name group by color.shade for color in colors"></select>
+                <input type="password" class="form-control" ng-model="Model.Password">
+                <span class="validate-has-error">{{Model.Valid.Password}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <button type="button" class="btn-lg btn-block btn btn-turquoise" ng-click="submit()">Sign up</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <table class="table table-bordered table-striped" id="example-2">
+        <thead>
+          <tr>
+            <th>Student Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Class</th>
+          </tr>
+        </thead>
+
+        <tbody class="middle-align">
+
+          <tr>
+            <td>
+              <input type="checkbox" class="cbr"></td>
+            <td>Randy S. Smith</td>
+            <td>8.7</td>
+            <td>Social and human service</td>
+            <td>
+              <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">Edit</a>
+
+              <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">Delete</a>
+
+              <a href="#" class="btn btn-info btn-sm btn-icon icon-left">Profile</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <input type="checkbox" class="cbr"></td>
+            <td>Ellen C. Jones</td>
+            <td>7.2</td>
+            <td>Education and development manager</td>
+            <td>
+              <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">Edit</a>
+
+              <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">Delete</a>
+
+              <a href="#" class="btn btn-info btn-sm btn-icon icon-left">Profile</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <input type="checkbox" class="cbr"></td>
+            <td>Carl D. Kaya</td>
+            <td>9.5</td>
+            <td>Express Merchant Service</td>
+            <td>
+              <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">Edit</a>
+
+              <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">Delete</a>
+
+              <a href="#" class="btn btn-info btn-sm btn-icon icon-left">Profile</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <input type="checkbox" class="cbr"></td>
+            <td>Jennifer J. Jefferson</td>
+            <td>10</td>
+            <td>Maxillofacial surgeon</td>
+            <td>
+              <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">Edit</a>
+
+              <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">Delete</a>
+
+              <a href="#" class="btn btn-info btn-sm btn-icon icon-left">Profile</a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-xs-6"></div>
+        <div class="col-xs-6">
+          <div class="dataTables_paginate paging_simple_numbers" id="example-1_paginate">
+            <ul class="pagination">
+              <li class="paginate_button previous disabled" aria-controls="example-1" tabindex="0" id="example-1_previous">
+                <a href="#">Previous</a>
+              </li>
+              <li class="paginate_button active" aria-controls="example-1" tabindex="0">
+                <a href="#">1</a>
+              </li>
+              <li class="paginate_button " aria-controls="example-1" tabindex="0">
+                <a href="#">2</a>
+              </li>
+              <li class="paginate_button " aria-controls="example-1" tabindex="0">
+                <a href="#">3</a>
+              </li>
+              <li class="paginate_button " aria-controls="example-1" tabindex="0">
+                <a href="#">4</a>
+              </li>
+              <li class="paginate_button " aria-controls="example-1" tabindex="0">
+                <a href="#">5</a>
+              </li>
+              <li class="paginate_button " aria-controls="example-1" tabindex="0">
+                <a href="#">6</a>
+              </li>
+              <li class="paginate_button next" aria-controls="example-1" tabindex="0" id="example-1_next">
+                <a href="#">Next</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

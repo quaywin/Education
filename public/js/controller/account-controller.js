@@ -43,7 +43,7 @@ app.controller('SignUpController',
   }
   // return $scope.init();
 }]);
-app.controller('ProfileController', ['$scope','$location', function($scope,$location) {
-  $scope.Model = null;
-  // return $scope.init();
-}]);
+// app.controller('ProfileController', ['$scope','$location', function($scope,$location) {
+//   $scope.Model = null;
+//   // return $scope.init();
+// }]);

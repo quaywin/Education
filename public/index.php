@@ -90,7 +90,13 @@ $app->add(new \AuthMiddleware());
 
 $app->get('/', function() use ($app) {
     if(isset($_SESSION['loggedin'])){
-        $app->render('profile_index.html');
+        if($_SESSION['type']==1){
+            $app->render('student_index.html');
+        }
+        if($_SESSION['type']==2){
+            $app->render('admin_index.html');
+        }
+        // $app->render('student_index.html');
     }else{
         $app->render('index.html');
     }
@@ -100,6 +106,7 @@ $app->get('/', function() use ($app) {
 spl_autoload_register('class_autoloader');
 // END POINT: /employees/
 include_once "controllers/account.php";
+include_once "controllers/admin.php";
 include_once "controllers/home.php";
 
 

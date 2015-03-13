@@ -6,3 +6,8 @@
 .pointer{
   cursor: pointer;
 }
+.form-horizontal .control-label .left{
+/* text-align:right; */
+text-align:left;
+background-color:#ffa;
+}

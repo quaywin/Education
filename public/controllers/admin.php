@@ -1,4 +1,39 @@
 <?php
+$app->post('/admin/getListStudent', function () use($app) {
+    $app->contentType('application/json');
+    $data = json_decode($app->request()->getBody());
+    $mObject = new Users();
+    $results = $mObject->getListStudent($data->page);
+    $count = $mObject->getCountListStudent();
+    $pages = Model::getPages($count);
+    $resultsArray=array(
+            "data"=> $results,
+            "count"=> $count,
+            "pages"=> $pages,
+            "pageSize" => Model::$pageSize
+            );
+    echo json_encode($resultsArray);
+});
+$app->post('/admin/addNewStudent', function () use($app) {
+    $app->contentType('application/json');
+    $data = json_decode($app->request()->getBody());
+    $mObject = new Users();
+    $results = $mObject->addNewStudent($data->firstname,$data->lastname,$data->username,$data->gender,$data->address,$data->classid,$data->studentcode);
+    $resultsArray=array(
+            "status"=> $results,
+            );
+    echo json_encode($resultsArray);
+});
+$app->post('/admin/deleteStudent', function () use($app) {
+    $app->contentType('application/json');
+    $data = json_decode($app->request()->getBody());
+    $mObject = new Users();
+    $results = $mObject->deleteStudent($data->id);
+    $resultsArray=array(
+            "status"=> $results,
+            );
+    echo json_encode($resultsArray);
+});
 $app->post('/admin/getListClass', function () use($app) {
     $app->contentType('application/json');
     $data = json_decode($app->request()->getBody());
@@ -118,6 +153,22 @@ $app->post('/admin/getListRole', function () use($app) {
             "pageSize" => Model::$pageSize
             );
     echo json_encode($resultsArray);
+});
+$app->post('/admin/getAllListClass', function () use($app) {
+    $app->contentType('application/json');
+    $data = json_decode($app->request()->getBody());
+    $class = new Classes();
+    $listClass = $class->getAllListClass();
+    echo json_encode($listClass);
+});
+$app->post('/admin/getListGender', function () use($app) {
+    $app->contentType('application/json');
+    $male = array('id' => 1,'name'=>'Male');
+    $female = array('id' => 2,'name'=>'Female');
+    $listGender=array(
+            $male,$female
+            );
+    echo json_encode($listGender);
 });
 $app->post('/admin/getAllListTeacherSubjectClass', function () use($app) {
     $app->contentType('application/json');

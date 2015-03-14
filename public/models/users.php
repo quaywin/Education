@@ -4,15 +4,19 @@
 */
 class User
 {
-  public $id,$username,$firstname,$lastname,$gender,$address,$phone,$classid,$type,$studentcode,$displayname,$genderName;
+  public $id,$username,$firstname,$lastname,$address,$classid,$studentcode,$genderName;
+  private $gender,$type;
   public function __construct(){
-    $this->displayname = "{$this->firstname} {$this->lastname}";
     if($this->gender == 0){
       $this->genderName = "Male";
     }else{
       $this->genderName = "Female";
     }
-    
+    if($this->type == 1){
+      $this->typeName = "Student";
+    }else{
+      $this->typeName = "Admin";
+    }
   }
 }
 class Users extends Model {
@@ -45,17 +49,40 @@ class Users extends Model {
     return $q->fetchAll();
   }
   function addNewUser($firstname,$lastname,$username,$password){
-    $sql = 'Insert into Users (username,password,firstname,lastname) values (?,?,?,?)';
+    $sql = 'Insert into Users (username,password,firstname,lastname,type) values (?,?,?,?,?)';
     $q = self::$db->prepare($sql);
-    if($q->execute(array($username,$password,$firstname,$lastname))){
+    if($q->execute(array($username,$password,$firstname,$lastname,1))){
       return $this->getUserLogin($username,$password);
     }
     return null;
   }
-  function addNewStudent($firstname,$lastname,$username,$password,$bod,$gender,$address,$phone,$classid,$studentcode){
-    $sql = 'Insert into Users (username,password,firstname,lastname,bod,gender,address,phone,classid,studentcode) values (?,?,?,?,?,?,?,?,?,?)';
+  function addNewStudent($firstname,$lastname,$username,$gender,$address,$classid,$studentcode){
+    $sql = 'Insert into Users (username,password,firstname,lastname,gender,address,classid,studentcode,type) values (?,"123",?,?,?,?,?,?,1)';
     $q = self::$db->prepare($sql);
-    if($q->execute(array($username,$password,$firstname,$lastname,$bod,$gender,$address,$phone,$classid,$studentcode))){
+    $arraysql = array($username,$firstname,$lastname,$gender,$address,$classid,$studentcode);
+    if($q->execute($arraysql)){
+      return true;
+    }
+    return false;
+  }
+  function getListStudent($page){
+    $offset = self::getOffset($page);
+    $sql = 'Select u.id,u.firstname,u.lastname,u.username,u.studentcode,u.address,c.name as "classname" from Users u, Class c where u.classid = c.id and u.type = 1 LIMIT ? , ?';
+    $q = self::$db->prepare($sql);
+    $q->execute(array($offset,self::$pageSize));
+    $q->setFetchMode(PDO::FETCH_CLASS,'User');
+    return $q->fetchAll();
+  }
+  function getCountListStudent(){
+    $sql = 'Select COUNT(*) from Users where type = 1';
+    $q = self::$db->prepare($sql);
+    $q->execute();
+    return $q->fetchColumn();
+  }
+  function deleteStudent($id){
+    $sql = 'Delete From Users Where id = ?';
+    $q = self::$db->prepare($sql);
+    if($q->execute(array($id))){
       return true;
     }
     return false;

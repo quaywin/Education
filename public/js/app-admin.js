@@ -7,6 +7,7 @@ app = angular.module('admin', [
   'teacher.controller',
   'subject.controller',
   'role.controller',
+  'student.controller',
   'helper',
   'ngCookies'
 ]);

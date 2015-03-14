@@ -3,6 +3,7 @@
 app = angular.module('student', [
   'ngRoute',
   'navigation.controller',
+  'student.controller',
   'ngCookies'
 ]);
 app.config([
@@ -22,18 +23,6 @@ app.config([
       })
       .when('/account/profile', {
         templateUrl: '/account/profile'
-      })
-      .when('/admin/student', {
-        templateUrl: '/admin/student'
-      })
-      .when('/admin/class', {
-        templateUrl: '/admin/class'
-      })
-      .when('/admin/teacher', {
-        templateUrl: '/admin/teacher'
-      })
-      .when('/admin/score', {
-        templateUrl: '/admin/score'
       })
       //404
       .when('/home/404', {

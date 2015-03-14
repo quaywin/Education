@@ -4,9 +4,10 @@
 */
 class User
 {
-  public $id,$username,$firstname,$lastname,$address,$classid,$studentcode,$genderName;
+  public $id,$username,$firstname,$lastname,$address,$classid,$studentcode,$genderName,$displayname;
   private $gender,$type;
   public function __construct(){
+    $this->displayname = "{$this->firstname} {$this->lastname}";
     if($this->gender == 0){
       $this->genderName = "Male";
     }else{
@@ -34,9 +35,8 @@ class Users extends Model {
     return true? $q->fetch()!=null:false;
   }
   function getUserById($id){
-    $sql = 'Select id,username,firstname,lastname from Users where id = ? limit 1';
+    $sql = 'Select u.id,u.firstname,u.lastname,u.username,u.studentcode,u.address,c.name as "classname" from Users u, Class c where u.classid = c.id and u.type = 1 and u.id = ?';
     $q = self::$db->prepare($sql);
-    
     $q->execute(array($id));
     $q->setFetchMode(PDO::FETCH_CLASS,'User');
     return $q->fetch();

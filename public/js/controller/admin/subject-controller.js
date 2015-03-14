@@ -21,16 +21,22 @@ app.controller('SubjectController', ['$scope','$location','$http', function($sco
   $scope.addNewSubject = function(){
     $http.post('/admin/addNewSubject',{name:$scope.SubjectName,code:$scope.SubjectCode}).success(function(data){
       if(data.status === true){
+        toastr.success("Add subject sucessful");
         $scope.SubjectName = null;
         $scope.SubjectCode = null;
         $scope.getListSubject($scope.CurrentPage);
+      }else{
+        toastr.error("Cannot add subject");
       }
     });
   };
   $scope.deleteSubject = function(id){
     $http.post('/admin/deleteSubject',{id:id}).success(function(data){
       if(data.status === true){
+        toastr.success("Delete subject sucessful");
         $scope.getListSubject($scope.CurrentPage);
+      }else{
+        toastr.error("Cannot delete subject");
       }
     });
   };

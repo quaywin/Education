@@ -13,6 +13,12 @@ class Subject extends Model{
     $q->execute();
     return $q->fetchAll(PDO::FETCH_ASSOC);
   }
+  function getAllListSubjectByClass($classid){
+    $sql = 'Select s.id,s.name,s.code from Subject s,Role r where s.id = r.subjectid and r.classid = ?';
+    $q = self::$db->prepare($sql);
+    $q->execute(array($classid));
+    return $q->fetchAll(PDO::FETCH_ASSOC);
+  }
   function getCountListSubject(){
     $sql = 'Select COUNT(*) from Subject';
     $q = self::$db->prepare($sql);

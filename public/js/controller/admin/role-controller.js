@@ -35,14 +35,21 @@ app.controller('RoleController', ['$scope','$location','$http', function($scope,
   $scope.addNewRole = function(){
     $http.post('/admin/addNewRole',{teacherid:$scope.TeacherId,subjectid:$scope.SubjectId,classid:$scope.ClassId}).success(function(data){
       if(data.status === true){
+        toastr.success("Add role sucessful");
         $scope.getListRole($scope.CurrentPage);
+      }else{
+        toastr.error("Cannot add role");
       }
     });
   };
   $scope.deleteRole = function(id){
     $http.post('/admin/deleteRole',{id:id}).success(function(data){
       if(data.status === true){
+        toastr.success("Delete role sucessful");
         $scope.getListRole($scope.CurrentPage);
+      }
+      else{
+        toastr.error("Cannot delete role");
       }
     });
   };

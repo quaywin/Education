@@ -8,8 +8,9 @@ app = angular.module('admin', [
   'subject.controller',
   'role.controller',
   'student.controller',
+  'score.controller',
   'helper',
-  'ngCookies'
+  'ngCookies',
 ]);
 app.config([
   '$routeProvider',

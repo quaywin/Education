@@ -20,15 +20,21 @@ app.controller('TeacherController', ['$scope','$location','$http', function($sco
   $scope.addNewTeacher = function(){
     $http.post('/admin/addNewTeacher',{name:$scope.TeacherName}).success(function(data){
       if(data.status === true){
+        toastr.success("Add Teacher sucessful");
         $scope.TeacherName = null;
         $scope.getListTeacher($scope.CurrentPage);
+      }else{
+        toastr.error("Cannot add teacher");
       }
     });
   };
   $scope.deleteTeacher = function(id){
     $http.post('/admin/deleteTeacher',{id:id}).success(function(data){
       if(data.status === true){
+        toastr.success("Delete teacher sucessful");
         $scope.getListTeacher($scope.CurrentPage);
+      }else{
+        toastr.error("Cannot delete teacher");
       }
     });
   };

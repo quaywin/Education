@@ -14,6 +14,33 @@ $app->post('/admin/getListStudent', function () use($app) {
             );
     echo json_encode($resultsArray);
 });
+$app->post('/admin/getListStudentByRole', function () use($app) {
+    $app->contentType('application/json');
+    $data = json_decode($app->request()->getBody());
+    $role = new Role();
+    $roleid = $role->getRoleId($data->subjectid,$data->classid);
+    $mObject = new Score();
+    $results = $mObject->getListStudent($data->page,$roleid);
+    $count = $mObject->getCountListStudent($roleid);
+    $pages = Model::getPages($count);
+    $resultsArray=array(
+            "data"=> $results,
+            "count"=> $count,
+            "pages"=> $pages,
+            "pageSize" => Model::$pageSize
+            );
+    echo json_encode($resultsArray);
+});
+$app->post('/admin/updateScore', function () use($app) {
+    $app->contentType('application/json');
+    $data = json_decode($app->request()->getBody());
+    $mObject = new Score();
+    $results = $mObject->updateScore($data->item);
+    $resultsArray=array(
+            "status"=> $results,
+            );
+    echo json_encode($resultsArray);
+});
 $app->post('/admin/addNewStudent', function () use($app) {
     $app->contentType('application/json');
     $data = json_decode($app->request()->getBody());
@@ -161,6 +188,13 @@ $app->post('/admin/getAllListClass', function () use($app) {
     $listClass = $class->getAllListClass();
     echo json_encode($listClass);
 });
+$app->post('/admin/getAllListSubjectByClass', function () use($app) {
+    $app->contentType('application/json');
+    $data = json_decode($app->request()->getBody());
+    $subject = new Subject();
+    $listSubject = $subject->getAllListSubjectByClass($data->classid);
+    echo json_encode($listSubject);
+});
 $app->post('/admin/getListGender', function () use($app) {
     $app->contentType('application/json');
     $male = array('id' => 1,'name'=>'Male');
@@ -206,7 +240,11 @@ $app->post('/admin/deleteRole', function () use($app) {
             );
     echo json_encode($resultsArray);
 });
-
+$app->get('/admin/getRoleId', function() use ($app) {
+    $app->contentType('application/json');
+    $role = new Role();
+    echo json_encode($role->getRoleId(18,1)['id']);
+});
 $app->get('/admin/student', function() use ($app) {
     $app->render('admin/student.html');
 });

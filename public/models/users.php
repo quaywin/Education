@@ -73,6 +73,13 @@ class Users extends Model {
     $q->setFetchMode(PDO::FETCH_CLASS,'User');
     return $q->fetchAll();
   }
+  function getListStudentWithClassId($classid){
+    $sql = 'Select id from Users where type = 1 and classid = ?';
+    $q = self::$db->prepare($sql);
+    $q->execute(array($classid));
+    $q->setFetchMode(PDO::FETCH_CLASS,'User');
+    return $q->fetchAll();
+  }
   function getCountListStudent(){
     $sql = 'Select COUNT(*) from Users where type = 1';
     $q = self::$db->prepare($sql);

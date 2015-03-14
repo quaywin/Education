@@ -40,19 +40,25 @@ app.controller('StudentController', ['$scope','$location','$http', function($sco
       username:$scope.Username,gender:$scope.Gender,classid:$scope.ClassId,studentcode:$scope.StudentCode,
       address:$scope.Address}).success(function(data){
       if(data.status === true){
+        toastr.success("Add student sucessful");
         $scope.FirstName = null;
         $scope.LastName = null;
         $scope.Username = null;
         $scope.StudentCode = null;
         $scope.Address = null;
         $scope.getListStudent($scope.CurrentPage);
+      }else{
+        toastr.error("Cannot add student");
       }
     });
   };
   $scope.deleteStudent = function(id){
     $http.post('/admin/deleteStudent',{id:id}).success(function(data){
       if(data.status === true){
+        toastr.success("Delete student sucessful");
         $scope.getListStudent($scope.CurrentPage);
+      }else{
+        toastr.error("Cannot delete student");
       }
     });
   };

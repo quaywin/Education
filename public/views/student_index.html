@@ -19,13 +19,12 @@
   <script src="theme/js/jquery-1.11.1.min.js"></script>
   <!-- <link href="css/app.css" rel="stylesheet">--></head>
 <body class="page-body">
-  <nav class="navbar horizontal-menu navbar-minimal" ng-controller="NavigationController">
+  <nav class="navbar horizontal-menu navbar-fixed-top navbar-minimal" ng-controller="NavigationController">
     <div class="navbar-inner">
       <div class="navbar-brand">
         <a href="#/" class="logo">
           <img src="images/puf_logo.jpg" width="50" alt class="hidden-xs"></a>
       </div>
-      <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav"></ul>
         <ul class="navbar-nav">
           <li class="has-sub">
@@ -39,7 +38,7 @@
                 </a>
               </li>
               <li>
-                <a href="/#/account/changepassword">
+                <a href="/#/student/changepassword">
                   <span class="title">ChangePassword</span>
                 </a>
               </li>
@@ -56,7 +55,7 @@
                 </a>
               </li>
               <li>
-                <a href="/#/study/score">
+                <a href="/#/student/score">
                   <span class="title">Score Viewing</span>
                 </a>
               </li>
@@ -64,7 +63,7 @@
           </li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav nav-userinfo navbar-right">
           <li class="dropdown user-profile">
             <a class="pointer" data-toggle="dropdown">
               <img src="theme/images/user-1.png" alt="user-image" class="img-circle img-inline userpic-32" width="28">
@@ -91,7 +90,6 @@
           </li>
         </ul>
       </div>
-    </div>
   </nav>
   <div class="page-container">
     <div class="main-content">
@@ -111,8 +109,8 @@
   <script src="lib/angular-route/angular-route.js"></script>
   <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="lib/angular-ui-date/src/date.js"></script>
-
   <script src="js/app-student.js"></script>
+  <script src="js/helper.js"></script>
   <script src="js/controller/home-controller.js"></script>
   <script src="js/controller/navigation-controller.js"></script>
   <script src="js/controller/student/student-controller.js"></script>

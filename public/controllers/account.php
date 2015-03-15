@@ -6,7 +6,6 @@ $app->get('/account/signup', function() use ($app) {
     $app->render('account/signup.html');
 });
 $app->get('/account/profile', function() use ($app) {
-    // echo $app->getCookie('loggedin');
     $app->render('account/profile.html');
 });
 $app->get('/account/auth', function() use ($app) {

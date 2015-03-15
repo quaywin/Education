@@ -18,14 +18,12 @@
   <script src="theme/js/jquery-1.11.1.min.js"></script>
   <!-- <link href="css/app.css" rel="stylesheet">--></head>
 <body class="page-body">
-  <nav class="navbar horizontal-menu navbar-minimal" ng-controller="NavigationController">
+  <nav class="navbar horizontal-menu navbar-fixed-top navbar-minimal" ng-controller="NavigationController">
     <div class="navbar-inner">
       <div class="navbar-brand">
         <a href="#/" class="logo">
           <img src="images/puf_logo.jpg" width="50" alt class="hidden-xs"></a>
       </div>
-      <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav"></ul>
         <ul class="navbar-nav">
           <li class="has-sub">
             <a class="pointer"> <i class="fa fa-user"></i>
@@ -78,7 +76,7 @@
           </li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav nav-userinfo navbar-right">
           <li class="dropdown user-profile">
             <a class="pointer" data-toggle="dropdown">
               <img src="theme/images/user-1.png" alt="user-image" class="img-circle img-inline userpic-32" width="28">
@@ -88,13 +86,6 @@
               </span>
             </a>
             <ul class="dropdown-menu user-profile-menu list-unstyled">
-              <li>
-                <a ng-click="profile()" class="pointer">
-                  <i class="fa-user"></i>
-                  Profile
-                </a>
-              </li>
-
               <li class="last">
                 <a href="/account/logout" class="pointer">
                   <i class="fa-lock"></i>
@@ -105,7 +96,6 @@
           </li>
         </ul>
       </div>
-    </div>
   </nav>
   <div class="page-container">
     <div class="main-content">

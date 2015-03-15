@@ -38,5 +38,18 @@ class Score extends Model{
     }
     return false;
   }
+  function getListScoreByUserId($page,$userid){
+    $offset = self::getOffset($page);
+    $sql = 'Select su.name, sc.scoretd, sc.scorecm, sc.scorefinal from Score sc, Role r, Subject su where sc.roleid = r.id and r.subjectid = su.id and sc.userid = ?  LIMIT ? , ?';
+    $q = self::$db->prepare($sql);
+    $q->execute(array($userid,$offset,self::$pageSize));
+    return $q->fetchAll(PDO::FETCH_ASSOC);
+  }
+  function getCountListScoreByUserId($userid){
+    $sql = 'Select count(*) from Score sc, Role r, Subject su where sc.roleid = r.id and r.subjectid = su.id and sc.userid = ?';
+    $q = self::$db->prepare($sql);
+    $q->execute(array($userid));
+    return $q->fetchColumn();
+  }
 }
 ?>  

@@ -108,7 +108,7 @@ spl_autoload_register('class_autoloader');
 include_once "controllers/account.php";
 include_once "controllers/admin.php";
 include_once "controllers/home.php";
-
+include_once "controllers/student.php";
 
 $app->run();
 function returnResult($action, $success = true, $id = 0)

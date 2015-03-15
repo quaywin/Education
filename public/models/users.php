@@ -153,5 +153,21 @@ class Users extends Model {
     else
       return null;
   }
+  function updatePassword($currentpassword,$newpassword,$confirmpassword,$id){
+    $sql = 'Select * from Users where id = ? and password =?';
+    $q = self::$db->prepare($sql);
+    $q->execute(array($id,$currentpassword));
+    if($q->fetch()!=null && ($newpassword == $confirmpassword)){
+      $sql = 'Update Users Set password = ? Where id = ?';
+      $q = self::$db->prepare($sql);
+      if($q->execute(array($newpassword,$id))){
+        return true;
+      }
+      return false;
+    }else{
+      return false;
+    }
+    
+  }
 }
 ?>

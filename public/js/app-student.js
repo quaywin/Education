@@ -4,6 +4,7 @@ app = angular.module('student', [
   'ngRoute',
   'navigation.controller',
   'student.controller',
+  'helper',
   'ngCookies'
 ]);
 app.config([
@@ -23,6 +24,12 @@ app.config([
       })
       .when('/account/profile', {
         templateUrl: '/account/profile'
+      })
+      .when('/student/changepassword', {
+        templateUrl: '/student/changepassword'
+      })
+      .when('/student/score', {
+        templateUrl: '/student/score'
       })
       //404
       .when('/home/404', {

@@ -23,9 +23,10 @@ class User
 class Users extends Model {
   
   function getUserLogin($username,$password){
+    $passwordHash = sha1($password);
     $sql = 'Select id,username,type from Users where username = ? and password =? limit 1';
     $q = self::$db->prepare($sql);
-    $q->execute(array($username,$password));
+    $q->execute(array($username,$passwordHash));
     return $q->fetch();
   }
   function getUserByUserName($username){
@@ -57,9 +58,10 @@ class Users extends Model {
     return null;
   }
   function addNewStudent($firstname,$lastname,$username,$gender,$address,$classid,$studentcode){
-    $sql = 'Insert into Users (username,password,firstname,lastname,gender,address,classid,studentcode,type) values (?,"123",?,?,?,?,?,?,1)';
+    $passwordHash = sha1("123");
+    $sql = 'Insert into Users (username,password,firstname,lastname,gender,address,classid,studentcode,type) values (?,?,?,?,?,?,?,?,1)';
     $q = self::$db->prepare($sql);
-    $arraysql = array($username,$firstname,$lastname,$gender,$address,$classid,$studentcode);
+    $arraysql = array($username,$passwordHash,$firstname,$lastname,$gender,$address,$classid,$studentcode);
     if($q->execute($arraysql)){
       return true;
     }
